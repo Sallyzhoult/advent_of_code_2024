@@ -20,25 +20,11 @@ class Solution(BaseSolutionDecoratorVersion):
     
     def part1(self, data: List[int]) -> int:
         " Solve part 1 of the day's challenge: Find the maximum number."
-        leftlist, rightlist = data
-        leftlist = sorted(leftlist, reverse=True)
-        rightlist = sorted(rightlist, reverse=True)
-        distance = sum([abs(l-r) for l, r in zip(leftlist, rightlist)])
         
-        return distance
+        return 
     
     def part2(self, data: List[int]) -> int:
-        similarity_score = 0
-        leftlist, rightlist = data
-        leftlist = sorted(leftlist)
-        dict_rigtlist = {}
-        for r in rightlist:
-            dict_rigtlist[r] = dict_rigtlist.get(r, 0) + 1
-        #print(f"dict_rigtlist: {dict_rigtlist}")
-        for l in leftlist:
-            if l in dict_rigtlist:
-                similarity_score += l*dict_rigtlist[l]
-        return similarity_score
+        pass
         
     
 def create_solution():

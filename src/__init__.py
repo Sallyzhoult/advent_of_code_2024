@@ -5,4 +5,10 @@ __version__ = "0.0.1"
 __author__ = "Liting Zhou"
 __license__ = "MIT"
 
+# src/__init__.py
+import sys
+from pathlib import Path
+
+# Ensure the src package can be imported correctly
+__package__ = "src"
 
