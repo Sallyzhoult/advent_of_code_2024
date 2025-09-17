@@ -13,6 +13,7 @@ class BaseSolutionDecoratorVersion(ABC):
         
     def load_input(self) -> str:
         " Load input data from a file corresponding to the day."
+        print(f"current self.day: {self.day}")
         if self.input_data is None:
             self.input_data = get_input(self.day)  # function to be defined
         return self.input_data
@@ -24,7 +25,7 @@ class BaseSolutionDecoratorVersion(ABC):
     
     @abstractmethod
     #@timer 
-    def part1(selt, data:Any) ->Any:
+    def part1(self, data:Any) ->Any:
         " Solve part 1 of the day's challenge."
         pass
     

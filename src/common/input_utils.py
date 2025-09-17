@@ -9,7 +9,7 @@ def get_input(day: int, use_cache: bool = True) -> str:
     
     
     input_path = Path(f"inputs/day{day:02d}.txt")
-    
+    print(f"Input path: {input_path}")
     if use_cache and input_path.exists():
         print(f"Using cached input for day {day} from {input_path}")
         with open(input_path, 'r') as file:

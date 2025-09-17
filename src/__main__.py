@@ -72,6 +72,7 @@ def main():
             return  
     elif args.day:
         if 1 <= args.day <= 25:
+            print(f"Running Day {args.day}, Part {args.part if args.part else 'Both'}")
             run_solution(args.day, args.part)
         else:
             print("Day must be between 1 and 25.")
