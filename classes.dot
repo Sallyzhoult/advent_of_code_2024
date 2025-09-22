@@ -1,7 +1,0 @@
-digraph "classes" {
-rankdir=BT
-charset="utf-8"
-"src.common.base_solution_decorator_version.BaseSolutionDecoratorVersion" [color="black", fontcolor="black", label=<{BaseSolutionDecoratorVersion|day : int<br ALIGN="LEFT"/>input_data : NoneType<br ALIGN="LEFT"/>|load_input(): str<br ALIGN="LEFT"/><I>parse_input</I>(input_data: str): Any<br ALIGN="LEFT"/><I>part1</I>(data: Any): Any<br ALIGN="LEFT"/><I>part2</I>(data: Any): Any<br ALIGN="LEFT"/>solve(part: Optional[int]): dict<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"src.day01.solution.Solution" [color="black", fontcolor="black", label=<{Solution|<br ALIGN="LEFT"/>|parse_input(input_data: str): List[int]<br ALIGN="LEFT"/>part1(data: List[int]): int<br ALIGN="LEFT"/>part2(data: List[int]): int<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-"src.day02.solution.Solution" [color="black", fontcolor="black", label=<{Solution|<br ALIGN="LEFT"/>|parse_input(input_data: str): List[int]<br ALIGN="LEFT"/>part1(data: List[int]): int<br ALIGN="LEFT"/><I>part2</I>(data: List[int]): int<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-}

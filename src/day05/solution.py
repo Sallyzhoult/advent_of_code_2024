@@ -1,6 +1,6 @@
 from typing import List, Tuple
 from common.base_solution_decorator_version import BaseSolutionDecoratorVersion  
-
+from collections import defaultdict
 
 
 class Solution(BaseSolutionDecoratorVersion):
@@ -11,13 +11,10 @@ class Solution(BaseSolutionDecoratorVersion):
         rules_origin, data= input_data.split("\n\n")
         #print (rules_origin)
         #print (data)
-        rules = {}
+        rules = defaultdict(set)
         for line in rules_origin.splitlines():
             val, key = map(int, line.split("|"))
-            if key not in rules:
-                rules[key] = [val]
-            else:
-                rules[key].append(val)
+            rules[key].add(val)
         #print (rules)
         data =[[int(x) for x in line.split(",")] for line in data.splitlines()]
         #print (data)
@@ -43,22 +40,11 @@ class Solution(BaseSolutionDecoratorVersion):
         rules, sequence = data        
         result = 0
         for seq in sequence:
-            visited = set()
-            forbidden = set()
-            #print (f"seq: {seq}, visited: {visited}, forbidden: {forbidden}")
-            is_invalid = False
-            for num in seq:
-                if num in forbidden:
-                    #print (f"Invalid sequence at number: {num}")
-                    is_invalid = True
-                    break
-                if num not in visited:
-                    visited.add(num)
-                    if num in rules:
-                        for f in rules[num]:
-                            forbidden.add(f)
-            #if is_invalid:
-                #print (f"Invalid sequence: {seq}")
+            if not self.is_valid(seq, rules):
+                #print(f"invalid seq: {seq}")
+                fixed_seq = self.fix_sequence(seq, rules)
+                result += fixed_seq[(len(fixed_seq)-1)//2]
+
 
         return result
     
@@ -74,6 +60,16 @@ class Solution(BaseSolutionDecoratorVersion):
                     for f in rules[num]:
                         forbidden.add(f)
         return True
+    
+    def fix_sequence(self, seq: List[int], rules: dict) -> List[int]:
+        filtered_rules = defaultdict(set)
+        for n in seq:
+            filtered_rules[n] = rules[n] & set(seq)
+        # print (f"filtered_rules: {filtered_rules}")
+        
+        new_seq = sorted(seq, key=lambda x: len(filtered_rules[x]))
+        # print (f"new_seq: {new_seq}")
+        return new_seq
     
 def create_solution():
     return Solution()
