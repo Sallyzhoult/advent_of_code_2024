@@ -4,6 +4,7 @@ from typing import Optional, List
 from datetime import datetime
 import sys
 from pathlib import Path
+from src.common.files import Files
 
 current_path = sys.path[0]
 if current_path in sys.path:
@@ -24,7 +25,7 @@ def run_solution(day: int, part: Optional[int]):
         module = importlib.import_module(module_name)
         
         if hasattr(module, 'create_solution'):
-            solution = module.create_solution()
+            solution = module.create_solution(day)
             return solution.solve(part)
         else:
             print(f"Day {day}: create_solution function missing")
@@ -45,7 +46,7 @@ def main():
     parser.add_argument("day", type=int, nargs="?", help="Day of the challenge (1-25).")
     parser.add_argument("--part","-p", type=int, choices=[1, 2], help="Part of the challenge (1 or 2).")
     parser.add_argument("--today", "-t",action="store_true", help="Run Today's Puzzle")
-    
+    parser.add_argument("--add", action="store_true", help="Optional, create daily file")
     # print(parser.parse_args())
     args = parser.parse_args()
     
@@ -71,12 +72,17 @@ def main():
             print("Today is not in the Advent of Code event period (December 1-25).")
             return  
     elif args.day:
-        if 1 <= args.day <= 25:
-            print(f"Running Day {args.day}, Part {args.part if args.part else 'Both'}")
-            run_solution(args.day, args.part)
-        else:
+        if  not 1 <= args.day <= 25:
             print("Day must be between 1 and 25.")
             return
+        elif args.add is True:
+            print("Adding day", args.day)
+            Files.add_day(args.day)
+        
+        else:
+            print(f"Running Day {args.day}, Part {args.part if args.part else 'Both'}")
+            run_solution(args.day, args.part)
+            
     else:
         print("Please specify a day (1-25) or use --today to run today's puzzle.")
         return    
