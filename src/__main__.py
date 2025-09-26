@@ -32,6 +32,7 @@ def run_solution(day: int, part: Optional[int]):
             return {}   
     except ModuleNotFoundError as e:
         print(f"Day {day} module not found: {e}")
+        Files.add_day(day)
         return {}
     except Exception as e:
         print(f"Error running day {day}: {e}")

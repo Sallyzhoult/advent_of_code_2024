@@ -10,7 +10,11 @@ class Solution(BaseSolutionDecoratorVersion):
         super().__init__(day =???)
  """
     def parse_input(self, input_data: str) -> List[int]:
-        testdata, actualdata = input_data.split("\n\n")
+        try:
+            testdata, actualdata = input_data.split("\n\n")
+        except:
+            print("!!Warning: test data is not added to the input")
+            return
         data = actualdata
         return data
 
@@ -20,5 +24,5 @@ class Solution(BaseSolutionDecoratorVersion):
     def part2(self, data: List[int]) -> int:
         pass
 
-def create_solution():
-    return Solution()
+def create_solution(day):
+    return Solution(day)
